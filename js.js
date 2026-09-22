@@ -1,7 +1,12 @@
 if ('serviceWorker' in navigator) {
    navigator.serviceWorker.register("/serviceworker.js");
 }
-
+self.addEventListener("install", event => {
+   console.log("Service worker installed");
+});
+self.addEventListener("activate", event => {
+   console.log("Service worker activated");
+});
 const CACHE_NAME = `temperature-converter-v1`;
    
 // Use the install event to pre-cache all initial resources.
