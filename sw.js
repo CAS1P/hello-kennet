@@ -5,7 +5,7 @@ self.addEventListener('install', event => {
     const cache = await caches.open(CACHE_NAME);
     await cache.addAll([
       './',
-      './hello-kennet.html',
+      './index.html',
       './style.css'
     ]);
   })());
