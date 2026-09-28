@@ -17,7 +17,73 @@ h1 {
     font: italic;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 };
+  <div class="content">
+    <h2 data-ref="active-demo-header">Capture Handle and Captured Surface Control</h2>
     
+    <p class="no-support-screencapture">Screen capturing is not (yet) supported on your device</p>
+    <p class="no-support-surface-control">Captured Surface Control is not (yet) supported on your device
+    <p class="no-support">Capture Handle is not (yet) supported on your device</p>
+  
+    <p>
+      Capture Handle and Captured Surface Control enable screen capturing web apps to remotely control captured web apps.
+    </p>
+    
+    <p> 
+      The capturing web app can send arbitrary commands to the capturing web app, scroll it and zoom it in and out.
+      A great use-case for this is a screen capture web 
+      app that can remotely control a presentation inside the web app that is captured. 
+    </p>
+    
+    <p>
+      The user of the capturing web app then doesn't need to switch between the capturing and captured app anymore to 
+      control that presentation.
+    </p>
+    
+    <p>
+      The captured app can opt-in through a call to <code>navigator.mediaDevices.setCaptureHandleConfig(config)</code>.
+      The <code>config</code> parameter has a <code>handle</code> property containing a string that uniquely identifies 
+      the captured app.
+    </p>
+    
+    <p>
+      The capturing app retrieves the handle by calling <code>getCaptureHandle</code> on the <code>VideoTrack</code> of 
+       the screen capturing <code>MediaStream</code>. It then uses that handle in messages it sends to the captured app 
+       through <code>BroadcastChannel</code>. These messages instruct the captured app to go to the previous or next 
+       image in the gallery.
+    </p>
+    
+    <h3>Demo</h3>
+    <p>
+      Click the button "Open page" below to open a page containing an image gallery. Then capture the screen of that 
+      page by clicking the button "Share screen". 
+    </p>
+    <p>  
+      After that, you can go back and forth between the images in the gallery from this page by clicking the "Previous" 
+      and "Next" buttons, scroll the captured page and zoom it in and out. No need to switch between this app and the
+      captured app anymore!
+    </p>
+    
+    <div id="buttons">
+      <button id="open-page-button" type="button">Open page</button>
+      <button id="share-screen-button" type="button" disabled>Share screen</button>
+      <button id="stop-share-screen-button" type="button" hidden>Stop share</button>
+      <button id="previous-button" type="button" disabled>Previous</button>
+      <button id="next-button" type="button" disabled>Next</button>
+      <button id="enable-scrolling-button" type="button" disabled>Enable scrolling</button>
+      <button id="zoom-out-button" type="button" disabled>
+        <i class="material-icons" translate="no" slot="left-icon">zoom_out</i>
+      </button>
+      <button id="zoom-in-button" type="button" disabled>
+        <i class="material-icons" translate="no" slot="left-icon">zoom_in</i>
+      </button>
+    </div>
+    
+    <div style="display: flex">
+      <video id="preview" autoplay playsinline></video>
+    </div>
+    
+    
+    <code-snippet lang="js">    
 <geolocation autolocate watch accuracymode="precise"></geolocation>
       
 </style>
