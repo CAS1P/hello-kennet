@@ -144,10 +144,3 @@ navigator.geolocation.getCurrentPosition(({coords}) => {
   },
   console.log(err),
 );
-
-// geolocation element
-const geolocation = document.querySelector('geolocation');
-geolocation.addEventListener('position', () => {
-  const {latitude, longitude} = geolocation.position.coords;
-  showPosition(latitude, longitude);
-});
